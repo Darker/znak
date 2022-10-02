@@ -1,0 +1,9 @@
+node_modules/
+bin/
+*.wasm
+*.exe
+*.lib
+*.so
+*.o
+*.
+.vs/

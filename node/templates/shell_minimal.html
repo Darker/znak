@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Emscripten-Generated Code</title>
+  </head>
+  <body>
+    <hr/>
+
+    <button id="mybutton">Run myFunction</button>
+
+    <script type='text/javascript'>
+
+      document.getElementById("mybutton").addEventListener("click", () => {
+        //alert("check console");
+        const result = Module.ccall(
+            "myFunction", // name of C function
+            null, // return type
+            null, // argument types
+            null // arguments
+        );
+      });
+      const strins = WebAssembly.instantiateStreaming;
+      WebAssembly.instantiateStreaming = function(moduleResp, imports) {
+        console.log(arguments);
+        return strins.apply(WebAssembly, arguments);
+      }
+    </script>
+    {{{ SCRIPT }}}
+  </body>
+</html>

@@ -1,0 +1,57 @@
+{
+    "configurations": [
+        {
+            "name": "EMSCRIPTEN",
+            "includePath": [
+                "${workspaceFolder}/cpp/**",
+                "D:\\JAKUB\\programming\\lib\\emsdk\\upstream\\emscripten\\system\\include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.19041.0",
+            "compilerPath": "D:\\JAKUB\\programming\\lib\\emsdk\\bazel\\emscripten_toolchain\\emcc.bat",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-gcc-x64",
+            "mergeConfigurations": false,
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/cpp/**",
+                    "D:\\JAKUB\\programming\\lib\\emsdk\\upstream\\emscripten\\system\\include",
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "GCC",
+            "includePath": [
+                "${workspaceFolder}/cpp/**",
+                "D:\\JAKUB\\programming\\lib\\emsdk\\upstream\\emscripten\\system\\include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.19041.0",
+            "compilerPath": "C:\\MinGW\\bin\\gcc.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-gcc-x64",
+            "mergeConfigurations": false,
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/cpp/**",
+                    "D:\\JAKUB\\programming\\lib\\emsdk\\upstream\\emscripten\\system\\include",
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        }
+    ],
+    "version": 4
+}

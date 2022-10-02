@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>WASM</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    
+</body>
+<script type="text/javascript">
+async function cmain() {
+    const moduleResp = await fetch("main.wasm");
+    const imports = {};
+    const wasmInst = await WebAssembly.instantiateStreaming(moduleResp, imports);
+    console.log(wasmInst.instance.exports);
+    // then(
+    //       (obj) => {
+    //         // Call an exported function:
+    //         obj.instance.exports.exported_func();
+        
+    //         // or access the buffer contents of an exported memory:
+    //         const i32 = new Uint32Array(obj.instance.exports.memory.buffer);
+        
+    //         // or access the elements of an exported table:
+    //         const table = obj.instance.exports.table;
+    //         console.log(table.get(0)());
+    //       }
+    //     );
+}
+</script>
+</html>
