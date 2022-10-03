@@ -145,6 +145,9 @@ struct sptr
     static sptr borrow(TSubClass& borrowPtr) { return sptr(&borrowPtr, CREATE_WEAK::YES); }
 
     template <typename TSubClass, typename enable_if_base<TSubClass>::type* = nullptr>
+    static sptr borrow(sptr<TSubClass>& borrowPtr) { return sptr(borrowPtr.getPtr(), CREATE_WEAK::YES); }
+
+    template <typename TSubClass, typename enable_if_base<TSubClass>::type* = nullptr>
     static sptr copy(const TSubClass& copyValue) { return sptr(wrapval_impl<T, TSubClass>::copyToPtr(copyValue), CREATE_WRAPPER::YES); }
     //static sptr<T>&& copy(const T& copyValue) { return sptr(anyptr_rref<T>::copyNew(copyValue), 1); }
 
@@ -180,6 +183,8 @@ struct sptr
     }
     #pragma endregion
 
+    T* getPtr() { return ptr(); }
+    const T* getPtr() const { return ptr(); }
 
     ~sptr() 
     {

@@ -68,36 +68,63 @@ bool runParser(sptr<Parser> parser, const std::string& data)
     }
     return false;
 }
+
+sptr<Parser> createStringLiteral()
+{
+  const auto quote = CharacterSimple<'"'>();
+  return Sequence("string").add
+  (
+    MatchRange::once("open_quote", quote),
+    Repeat("contents", 1, Repeat::MATCH_MAX,
+      First("literal_or_escaped")
+      .add
+      (
+        MatchRange::unlimited("characters", ExceptCharacters("\\\"\n")),
+        Sequence("escaped_character")
+        .add
+        (
+          MatchRange::once("escape_symbol", CharacterSimple<'\\'>()),
+          MatchRange::once("escaped_char", Anything())
+        )
+      )
+    ),
+    MatchRange::once("close_quote", quote)
+  );
+}
+
+// sptr<Parser> createFloatLiteral()
+// {
+//   const auto dot = CharacterSimple<'.'>();
+//   return Sequence("string").add
+//   (
+//     MatchRange::unlimited("decimals", chars::NUMBERS),
+//     Repeat("contents", 1, Repeat::MATCH_MAX,
+//       First("literal_or_escaped")
+//       .add
+//       (
+//         MatchRange::unlimited("characters", ExceptCharacters("\\\"\n")),
+//         Sequence("escaped_character")
+//         .add
+//         (
+//           MatchRange::once("escape_symbol", CharacterSimple<'\\'>()),
+//           MatchRange::once("escaped_char", Anything())
+//         )
+//       )
+//     ),
+//     MatchRange::once("close_quote", quote)
+//   );
+// }
+
 int parseStringTest()
 {
-    const auto quote = CharacterSimple<'"'>();
-    MatchRange test = MatchRange::unlimited("open_quote", quote);
+    sptr<Parser> stringLiteral = createStringLiteral();
 
-    Sequence stringLiteral("string");
-    
-    stringLiteral.add
-    (
-        MatchRange::once("open_quote", quote),
-        Repeat("contents", 1, Repeat::MATCH_MAX,
-            First("literal_or_escaped")
-            .add
-            (
-                MatchRange::unlimited("characters", ExceptCharacters("\\\"\n")),
-                Sequence("escaped_character")
-                .add
-                (
-                    MatchRange::once("escape_symbol", CharacterSimple<'\\'>()),
-                    MatchRange::once("escaped_char", Anything())
-                )
-            )
-        ),
-        MatchRange::once("close_quote", quote)
-    );
     std::string testData = "\"blabloa dsa \\\\ dsads\\\" dsa\\\\\\\"  \"";
 
 
     return (int)runParser(sptr<Parser>::borrow(stringLiteral), testData);
 }
+
 
 int parseFloatTest()
 {

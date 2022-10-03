@@ -158,9 +158,9 @@ struct Sequence : ParserMulti<Sequence>
 
     bool complete() const override
     {
-        if(currentParser + 1 == parsers.size())
+        if(currentParser == parsers.size())
         {
-            return parsers[currentParser]->valid();
+            return parsers[currentParser-1]->valid();
         }
         return false;
     }
@@ -221,30 +221,6 @@ struct Repeat : ParserBase
         , inner(std::forward<sptr<Parser>>(innerParser))
     {}
     Repeat(const std::string& name, size_t min, size_t max, sptr<Parser>& innerParser) = delete;
-    // template <typename TParser, typename std::enable_if<std::is_base_of<Parser, TParser>::value, TParser>::type* = nullptr>
-    // Repeat(const std::string& name, size_t min, size_t max, TParser&& inner) : ParserBase(name), min(min), max(max), inner(stdinner) {}
-    // template <typename TParser, typename std::enable_if<std::is_base_of<Parser, TParser>::value, TParser>::type* = nullptr>
-    // Repeat(const std::string& name, size_t min, size_t max, TParser& inner) = delete;
-    // #pragma region move_semantics
-    // Repeat(const Repeat&) = delete;
-    // void operator=(const Repeat&) = delete;
-    // Repeat(Repeat&& moveHere)
-    //  : ParserBase(std::move(moveHere.name))
-    //  , inner(std::move(moveHere.inner))
-    //  , min(moveHere.min)
-    //  , max(moveHere.max)
-    //  , matched(moveHere.matched)
-    // {}
-    // Repeat& operator=(Repeat&& moveHere)
-    // {
-    //     name = std::move(moveHere.name);
-    //     inner = std::move(moveHere.inner);
-    //     min = moveHere.min;
-    //     max = moveHere.max;
-    //     matched = moveHere.matched;
-    //     return *this;
-    // }
-    // #pragma endregion
 
     void reset() override
     {

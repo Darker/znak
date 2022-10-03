@@ -3,7 +3,7 @@
         {
             "name": "EMSCRIPTEN",
             "includePath": [
-                "${workspaceFolder}/cpp/**",
+                "${workspaceFolder}/znak/include/**",
                 "D:\\JAKUB\\programming\\lib\\emsdk\\upstream\\emscripten\\system\\include"
             ],
             "defines": [
@@ -19,7 +19,7 @@
             "mergeConfigurations": false,
             "browse": {
                 "path": [
-                    "${workspaceFolder}/cpp/**",
+                    "${workspaceFolder}/znak/include/**",
                     "D:\\JAKUB\\programming\\lib\\emsdk\\upstream\\emscripten\\system\\include",
                     "${workspaceFolder}"
                 ],
@@ -29,7 +29,7 @@
         {
             "name": "GCC",
             "includePath": [
-                "${workspaceFolder}/cpp/**",
+                "${workspaceFolder}/znak/include/**",
                 "D:\\JAKUB\\programming\\lib\\emsdk\\upstream\\emscripten\\system\\include"
             ],
             "defines": [
@@ -45,7 +45,7 @@
             "mergeConfigurations": false,
             "browse": {
                 "path": [
-                    "${workspaceFolder}/cpp/**",
+                    "${workspaceFolder}/znak/include/**",
                     "D:\\JAKUB\\programming\\lib\\emsdk\\upstream\\emscripten\\system\\include",
                     "${workspaceFolder}"
                 ],

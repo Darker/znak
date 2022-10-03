@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <emscripten/emscripten.h>
 
-#include "znak/znak.h"
+#include "znak.h"
 
 
 #ifdef __INTELLISENSE__
